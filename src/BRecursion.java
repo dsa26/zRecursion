@@ -67,6 +67,30 @@ public class BRecursion {
         }
     }
 
+    public static int countCriticalVotes (ArrayList<Integer> blocks, int blockIndex) {
+        /*
+            Initially, I thought it would make sense to compare 1v1 and then recurse by adding or subtracting blocks from the critical block
+            This didn't work and I was confused
+            Then I realized that by doing this, I was trying to see when the critical block would win, rather than when the critical block would influence outcome
+         */
+        ArrayList<Integer> newBlocks = new ArrayList<>(blocks);
+        int criticalBlock = newBlocks.get(blockIndex);
+        newBlocks.remove(blockIndex);
+        if (newBlocks.size() == 1) {
+            return (criticalBlock >= newBlocks.getFirst() ? 1 : 0);
+        } else {
+            ArrayList<Integer> pos1 = new ArrayList<>(newBlocks);
+            ArrayList<Integer> pos2 = new ArrayList<>(newBlocks);
+            pos1.add(criticalBlock + newBlocks.getFirst());
+            pos2.add(criticalBlock - newBlocks.getFirst());
+            pos1.removeFirst();
+            pos2.removeFirst();
+            System.out.print(pos1);
+            System.out.println(pos2);
+            return countCriticalVotes(pos1, pos1.size() - 1) + countCriticalVotes(pos2, pos2.size() - 1);
+        }
+    }
+
 //    public static Object[] coinWrapper (int coins, String p1, String p2) {
 //        if (coins == 1) {
 //            params = new Object[2];

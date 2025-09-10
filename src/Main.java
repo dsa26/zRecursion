@@ -6,6 +6,6 @@ public class Main {
         for (String arg : args) {
             list.add(Integer.parseInt(arg));
         }
-        System.out.println(Boolean.toString(BRecursion.solvable(list.getFirst(), new ArrayList<Integer> (list.subList(1, list.size())))));
+        System.out.println(BRecursion.countCriticalVotes(new ArrayList<Integer> (list.subList(1, list.size())), list.getFirst()));
     }
 }
