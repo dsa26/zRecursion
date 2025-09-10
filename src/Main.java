@@ -1,12 +1,11 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (String arg : Arrays.copyOfRange(args, 1, args.length)) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (String arg : args) {
             list.add(Integer.parseInt(arg));
         }
-        System.out.println(Recursion.subsetSum(list, Integer.parseInt(args[0])));
+        System.out.println(Boolean.toString(BRecursion.solvable(list.getFirst(), new ArrayList<Integer> (list.subList(1, list.size())))));
     }
 }
